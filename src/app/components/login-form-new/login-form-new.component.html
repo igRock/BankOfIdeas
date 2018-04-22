@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="card mx-auto col-6 shadow p-3 mb-5 bg-white rounded mt-5">
+    <div class="card-header">
+      <h5 class="text-center">Вход в Банк идей</h5>
+    </div>
+    <div class="card-body">
+    <form>  
+      <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input 
+            [(ngModel)]="email"
+            name="email" 
+            type="email" 
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp" 
+            placeholder="Введите email">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Пароль</label>
+          <input 
+            [(ngModel)]="password"
+            name="password" 
+            type="password"
+            class="form-control" 
+            id="exampleInputPassword1" 
+            placeholder="Введите пароль"/>
+        </div>
+        
+      <button 
+        (click)="login()"
+        type="submit" 
+        class="btn btn-primary">Войти</button>
+    </form>    
+    </div>
+  </div>
+</div>

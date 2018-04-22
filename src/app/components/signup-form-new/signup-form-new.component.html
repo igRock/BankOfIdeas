@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="card mx-auto col-6 shadow p-3 mb-5 bg-white rounded mt-5">
+    <div class="card-header">
+      <h5 class="text-center">Регистрация</h5>
+    </div>
+    <div class="card-body">
+    <form #signupForm="ngForm">  
+      <div class="form-group">
+          <label for="exampleInputEmail1">Ваш email</label>
+          <input 
+            [(ngModel)]="email"
+            name="email" 
+            type="email" 
+            class="form-control" 
+            id="exampleInputEmail1" 
+            aria-describedby="emailHelp" 
+            placeholder="Введите email"
+            maxlength="60" required/>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Придумайте пароль</label>
+          <input 
+            [(ngModel)]="password"
+            name="password" 
+            type="password"
+            class="form-control" 
+            id="exampleInputPassword1" 
+            placeholder="Введите пароль"
+            required/>
+        </div>
+        <br>  
+        <div class="form-group">
+          <label for="formGroupExampleInput">Имя</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Иван" [(ngModel)]="realName" name="realName" required/>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Фамилия</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Иванов" [(ngModel)]="realSurname" name="realSurname" required/>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput">Ник</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ИванГай" [(ngModel)]="displayName" name="displayName" required/>
+        </div>
+        <button [disabled]="!signupForm.form.valid" 
+          type="submit" (click)="signUp()"
+          class="btn btn-primary" id="btn-signUp">Зарегистрироваться</button>
+    </form>    
+    </div>
+  </div>
+  </div>

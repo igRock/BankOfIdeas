@@ -1,0 +1,34 @@
+<div class="container" >
+  <div class="card mx-auto col-10 shadow p-3 mb-2 bg-white rounded mt-3 ">
+    <form (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="form-group col">
+          <label for="exampleFormControlInput1">Идея</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="О чем твоя идея?"
+          [(ngModel)]="idea.title" name="title">
+        </div>
+        <div class="form-group col">
+          <label for="exampleFormControlSelect1">На какую тему?</label>
+          <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="idea.topic" name="topic">
+            <option></option>
+            <option>Frontend</option>
+            <option>Scala</option>
+            <option>QA Automation</option>
+            <option>Risks</option>
+            <option>Android</option>
+            <option>iOS</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="idea.title && idea.topic">
+        <label for="exampleFormControlTextarea1">Подробное описание</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="idea.description" name="description"></textarea>
+      </div>
+      <div class="form-group form-check" *ngIf="idea.title && idea.topic">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="isAnonymous" name="isAnonymous">
+          <label class="form-check-label" for="exampleCheck1">Рассказать об идее анонимно</label>
+        </div>
+      <button type="submit" class="btn btn-primary" *ngIf="idea.title && idea.topic">Поделиться</button>
+    </form>
+  </div>
+</div>
