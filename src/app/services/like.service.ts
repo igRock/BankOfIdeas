@@ -7,31 +7,44 @@ export class LikeService {
 
   constructor(private ideaService: IdeaService) { }
 
-  onLike(ideaItem: IdeaItem, newLiker){
-      
-    if (ideaItem.likers.indexOf(newLiker) == -1) {
+  onLike(ideaItem: IdeaItem, onlineUser){
+    let indexOfLiker = ideaItem.likers.indexOf(onlineUser);
+    let indexOfDisliker = ideaItem.dislikers.indexOf(onlineUser);
+
+    if ((indexOfLiker == -1) && (indexOfDisliker == -1)) {
       ideaItem.likes = ideaItem.likes + 1;
-      ideaItem.likers.push(newLiker);
+      ideaItem.likers.push(onlineUser);
+      this.ideaService.updateIdea(ideaItem);
+    } else if (indexOfLiker && (indexOfDisliker == -1)) {
+      ideaItem.likes = ideaItem.likes - 1;
+      ideaItem.likers.splice(indexOfLiker, 1);
       this.ideaService.updateIdea(ideaItem);
     } else {
-      let index = ideaItem.likers.indexOf(newLiker);
-
-      ideaItem.likes = ideaItem.likes - 1;
-      ideaItem.likers.splice(index, 1);
+      ideaItem.likes = ideaItem.likes + 1;
+      ideaItem.dislikes = ideaItem.dislikes - 1;
+      ideaItem.dislikers.splice(indexOfDisliker, 1);
+      ideaItem.likers.push(onlineUser);
       this.ideaService.updateIdea(ideaItem);
     }
   }
-  onDislike(ideaItem: IdeaItem, newDisliker){
-      
-    if (ideaItem.dislikers.indexOf(newDisliker) == -1) {
+
+  onDislike(ideaItem: IdeaItem, onlineUser){
+    let indexOfLiker = ideaItem.likers.indexOf(onlineUser);
+    let indexOfDisliker = ideaItem.dislikers.indexOf(onlineUser);
+
+    if ((indexOfLiker == -1) && (indexOfDisliker == -1)) {
       ideaItem.dislikes = ideaItem.dislikes + 1;
-      ideaItem.dislikers.push(newDisliker);
+      ideaItem.dislikers.push(onlineUser);
+      this.ideaService.updateIdea(ideaItem);
+    } else if (indexOfLiker && (indexOfDisliker == -1)) {
+      ideaItem.likes = ideaItem.likes - 1;
+      ideaItem.dislikes = ideaItem.dislikes + 1;
+      ideaItem.likers.splice(indexOfLiker, 1);
+      ideaItem.dislikers.push(onlineUser);
       this.ideaService.updateIdea(ideaItem);
     } else {
-      let index = ideaItem.dislikers.indexOf(newDisliker);
-
       ideaItem.dislikes = ideaItem.dislikes - 1;
-      ideaItem.dislikers.splice(index, 1);
+      ideaItem.dislikers.splice(indexOfDisliker, 1);
       this.ideaService.updateIdea(ideaItem);
     }
   }

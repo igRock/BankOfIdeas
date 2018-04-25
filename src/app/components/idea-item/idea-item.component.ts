@@ -26,8 +26,6 @@ export class IdeaItemComponent implements OnInit {
   ideaToEdit: IdeaItem;
   editState: boolean = false;
   improvedIdea: IdeaItem;
-  
-  likeButtonPressed: boolean = false;
 
   likes: number;
   dislikes: number;
@@ -38,12 +36,10 @@ export class IdeaItemComponent implements OnInit {
 
   onLikeButton(ideaItem: IdeaItem) {
     this.likeService.onLike(ideaItem, this.onlineUser);
-    this.likeButtonPressed = !this.likeButtonPressed;
   }
 
   onDislikeButton(ideaItem: IdeaItem){
     this.likeService.onDislike(ideaItem, this.onlineUser);
-    this.likeButtonPressed = !this.likeButtonPressed;
   }
 
   constructor(private authService: AuthService, private ideaService: IdeaService, private likeService: LikeService) {
