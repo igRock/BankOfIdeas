@@ -1,96 +1,24 @@
 <div class="container" >
   <div class="card mx-auto col-10 shadow p-3 mb-5 bg-white rounded" >
-    <ul class="nav nav-tabs" id="myTab" role="tablist"> 
-      <li class="nav-item">
-        <a class="nav-link" id="frontend-tab" data-toggle="tab" href="#frontend" role="tab" aria-controls="frontend" aria-selected="true">
-          Frontend
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="scala-tab" data-toggle="tab" href="#scala" role="tab" aria-controls="scala" aria-selected="false">
-          Scala
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="qa-tab" data-toggle="tab" href="#qa" role="tab" aria-controls="qa" aria-selected="false">
-          QA Automation
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="risks-tab" data-toggle="tab" href="#risks" role="tab" aria-controls="risks" aria-selected="false">
-          Risks
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="android-tab" data-toggle="tab" href="#android" role="tab" aria-controls="android" aria-selected="false">
-          Android
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="ios-tab" data-toggle="tab" href="#ios" role="tab" aria-controls="ios" aria-selected="false">
-          iOS
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" id="ownideas-tab" data-toggle="tab" href="#ownideas" role="tab" aria-controls="ownideas" aria-selected="true">
-          Мои идеи
-        </a>
-      </li>      
-
-    </ul>
-
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="ownideas" role="tabpanel" aria-labelledby="ownideas-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.email==onlineUserEmail">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      
-      <div class="tab-pane fade show active" id="frontend" role="tabpanel" aria-labelledby="frontend-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='Frontend'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      <div class="tab-pane fade" id="scala" role="tabpanel" aria-labelledby="scala-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='Scala'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      <div class="tab-pane fade" id="qa" role="tabpanel" aria-labelledby="qa-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='QA Automation'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      <div class="tab-pane fade" id="risks" role="tabpanel" aria-labelledby="risks-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='Risks'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      <div class="tab-pane fade" id="android" role="tabpanel" aria-labelledby="android-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='Android'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-      <div class="tab-pane fade" id="ios" role="tabpanel" aria-labelledby="ios-tab">
-        <ng-container *ngFor="let idea of feed | async">
-          <div *ngIf="idea.topic=='iOS'">
-            <app-idea-item [ideaItem]="idea"></app-idea-item>
-          </div>
-        </ng-container>
-      </div>
-    </div>
+    <ngb-tabset>
+      <ngb-tab title="Мои идеи">
+        <ng-template ngbTabContent>
+          <ng-container *ngFor="let idea of feed | async">
+            <div *ngIf="idea.email==onlineUserEmail">
+              <app-idea-item [ideaItem]="idea"></app-idea-item>
+            </div>
+          </ng-container>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab *ngFor="let tab of tabs" [title]="tab">  
+        <ng-template ngbTabContent>
+          <ng-container *ngFor="let idea of feed | async">
+            <div *ngIf="idea.topic==tab">
+              <app-idea-item [ideaItem]="idea"></app-idea-item>
+            </div>
+          </ng-container>
+        </ng-template>
+      </ngb-tab>  
+    </ngb-tabset>
   </div>
 </div>
-

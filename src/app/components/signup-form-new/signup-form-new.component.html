@@ -37,10 +37,6 @@
           <label for="formGroupExampleInput">Фамилия</label>
           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Иванов" [(ngModel)]="realSurname" name="realSurname" required/>
         </div>
-        <div class="form-group">
-          <label for="formGroupExampleInput">Ник</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ИванГай" [(ngModel)]="displayName" name="displayName" required/>
-        </div>
         <button [disabled]="!signupForm.form.valid" 
           type="submit" (click)="signUp()"
           class="btn btn-primary" id="btn-signUp">Зарегистрироваться</button>

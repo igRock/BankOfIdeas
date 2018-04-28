@@ -11,7 +11,8 @@ import { IdeaItem } from '../models/idea-item.model';
 export class IdeaService {
   user: firebase.User;
   ideas: FirebaseListObservable<IdeaItem[]>;
-  userName: Observable<string>;
+  // userName: Observable<string>;
+  userName: any;
   
   constructor(
     private db: AngularFireDatabase,
@@ -23,7 +24,7 @@ export class IdeaService {
           }
 
           this.getUser().subscribe(a => {
-            this.userName = a.displayName;
+            this.userName = a.realName + ' ' + a.realSurname;
           });
         });
     }
@@ -76,7 +77,7 @@ export class IdeaService {
     }
     getTimeStamp() {
       const now = new Date();
-      const date = now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getDate();
+      const date = now.getDate() + '.' + (now.getMonth() + 1) + '.' + now.getFullYear();
       const time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
   
       return (date + ' ' + time);

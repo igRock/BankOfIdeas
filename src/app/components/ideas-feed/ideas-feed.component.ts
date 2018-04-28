@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { IdeaItem } from '../../models/idea-item.model';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from '../../services/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-ideas-feed',
@@ -12,6 +13,14 @@ import { AuthService } from '../../services/auth.service';
 })
 export class IdeasFeedComponent implements OnInit, OnChanges {
   feed: FirebaseListObservable<IdeaItem[]>;
+  tabs: string[] = [
+    'Frontend',
+    'Scala',
+    'QA Automation',
+    'Risks',
+    'Android',
+    'iOS'
+  ]
   onlineUserEmail: string;
 
   constructor(private authService: AuthService, private ideaService: IdeaService) {

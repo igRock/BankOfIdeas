@@ -11,7 +11,6 @@ export class SignupFormNewComponent {
 
   email: string;
   password: string;
-  displayName: string;
   errorMsg: string;
   realName: string;
   realSurname: string;
@@ -23,8 +22,7 @@ export class SignupFormNewComponent {
     const password = this.password;
     const realName = this.realName;
     const realSurname = this.realSurname;
-    const displayName = this.displayName;
-    this.authService.signUp(email, password, realName, realSurname, displayName)
+    this.authService.signUp(email, password, realName, realSurname)
       .then(resolve => this.router.navigate(['bank-of-ideas']))
       .catch(error => this.errorMsg = error.message);
   }
