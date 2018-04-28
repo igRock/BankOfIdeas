@@ -38,35 +38,20 @@ export class AuthService {
       this.router.navigate(['login']);
     }
 
-    // signUp(email: string, password: string, displayName: string)
-    signUp(email: string, password: string, realName: string, realSurname: string, displayName: string) {
+    signUp(email: string, password: string, realName: string, realSurname: string)  {
       return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
               .then((user) => {
                 this.authState = user;
-                // const status = 'online';
-                this.setUserData(email, realName, realSurname, displayName);
+                this.setUserData(email, realName, realSurname);
               }).catch(error => console.log(error));
     }
 
-    setUserData(email: string, realName: string, realSurname: string, displayName: string): void {
+    setUserData(email: string, realName: string, realSurname: string): void {
       const path = `users/${this.currentUserId}`;
       const data = {
         email: email,
         realName: realName,
         realSurname: realSurname,
-        displayName: displayName,
-        status: status
-      };
-
-      this.db.object(path).update(data)
-        .catch(error => console.log(error));
-    }
-
-    setUserStatus(status: string): void {
-      const path = `users/${this.currentUserId}`;
-
-      const data = {
-        status: status
       };
 
       this.db.object(path).update(data)

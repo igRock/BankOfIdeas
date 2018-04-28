@@ -1,6 +1,6 @@
 <div class="navBar">
-    <div id="logo"></div>
-    <div id="heading"><a routerLink="/bank-of-ideas">Банк идей</a></div>
+    <div id="logo"><a routerLink="/bank-of-ideas"><img src="../../../assets/64px-Icons8_flat_idea.svg.png" alt=""></a></div>
+    <div id="heading"><a routerLink="/bank-of-ideas">БАНК ИДЕЙ</a></div>
   <div class="links">
     <span>
       <a *ngIf="!(user|async)?.uid" href="#" (click)="login()">Login</a>
@@ -12,7 +12,7 @@
       <span id="userEmail" *ngIf="(user|async)?.uid">{{userEmail}}</span>
     </span>
     <span>
-      <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Logout</a>
+      <a *ngIf="(user|async)?.uid" href="#" (click)="logout()">Выйти</a>
     </span>
   </div>
 </div>

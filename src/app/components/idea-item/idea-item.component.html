@@ -3,9 +3,9 @@
     <div class="row justify-content-md-center p-3">
       <div class="col-3">
         <div class="row">
-          <span class="sender text-center" [ngClass]="{'isOwnSender':isOwnIdea}">
+          <h3 [ngClass]="{'isOwnSender':isOwnIdea}">
             {{ userName }}
-          </span>
+          </h3>
           <br>
           <span class="timestamp text-center" [ngClass] = "{'isOwnSender':isOwnIdea}">
             {{ timeStamp }}
@@ -39,7 +39,7 @@
       <button type="button" class="btn btn-sm btn-outline-warning" (click)="editIdea($event, ideaItem)" *ngIf="editState==false"><i class="material-icons">build</i></button>
       <button type="button" class="btn btn-sm btn-outline-warning" (click)="clearState()" *ngIf="isOwnIdea && editState"><i class="material-icons">settings_backup_restore</i></button>
     </div>
-    <div class="card mx-auto col-12 shadow p-3 mb-2 bg-white rounded mt-3 " *ngIf="editState && ideaToEdit.id === ideaItem.id">
+    <div class="card mx-auto col-12 shadow p-3 mb-2 bg-white rounded mt-3 " *ngIf="editState && ideaToEdit.$key === ideaItem.$key">
       <form (ngSubmit)="updateIdea(ideaItem)">
         <div class="row">
           <div class="form-group col">
@@ -72,85 +72,3 @@
       </form>
     </div>
   </div>
-
-
-
-
-
-
-
-
-  <!-- <div class="card mx-auto p-3 mb-1 mt-2 rounded" [ngClass]="{'isOwnIdeaContainer':isOwnIdea}">
-    <div class="row align-items-center">
-      <div class="col">
-        <span class="sender" [ngClass]="{'isOwnSender':isOwnIdea}">
-          {{ userName }}
-        </span>
-        <br>
-        <span class="timestamp" [ngClass] = "{'isOwnSender':isOwnIdea}">
-          {{ timeStamp }}
-        </span>
-        <div class="row align-items-center" *ngIf="!isOwnIdea">
-          <div class="btn-group col" role="group" aria-label="Basic example">
-          <button type="button" (click)="onLikeButton(ideaItem)" class="btn btn-outline-success btn-secondary">
-            <i class="material-icons">thumb_up</i>{{ likes }}
-          </button>
-          <button type="button" (click)="onDislikeButton(ideaItem)" class="btn btn-outline-danger btn-secondary">
-            <i class="material-icons">thumb_down</i>{{ dislikes }}
-          </button>
-          </div>
-        </div>
-        
-        <div class="row align-items-center" *ngIf="isOwnIdea">
-          <div class="btn-group col" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-success btn-secondary active">
-              <i class="material-icons">thumb_up</i>{{ likes }}
-            </button>
-            <button type="button" class="btn btn-outline-danger btn-secondary active">
-              <i class="material-icons">thumb_down</i>{{ dislikes }}
-            </button>
-          </div>
-        </div>
-
-      <div class="col">
-        <h5 [ngClass] = "{'isOwnSender':isOwnIdea}">{{ ideaTitle }}</h5>
-        <p [ngClass] = "{'isOwnSender':isOwnIdea}">{{ ideaDescription }}</p>
-      </div>
-      
-      
-      <div class="row">
-          <button type="button" class="btn btn-sm btn-outline-warning" *ngIf="isOwnIdea">
-            <i class="material-icons" (click)="editIdea($event, ideaItem)" *ngIf="editState==false">build</i>
-            <i class="material-icons" (click)="clearState()" *ngIf="isOwnIdea && editState">settings_backup_restore</i>
-          </button>
-      </div>
-    
-      <div class="row align-items-center" *ngIf="editState && ideaToEdit.id === ideaItem.id">
-          <form (ngSubmit)="updateIdea(ideaItem)">
-              <div class="form-group">
-                  <label for="exampleFormControlInput1">Идея</label>
-                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="О чем твоя идея?"
-                  [(ngModel)]="ideaTitle" name="title">
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlSelect1">На какую тему?</label>
-                  <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="ideaTopic" name="topic">
-                    <option>Frontend</option>
-                    <option>Scala</option>
-                    <option>QA Automation</option>
-                    <option>Risks</option>
-                    <option>Android</option>
-                    <option>iOS</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Подробное описание</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="ideaDescription" name="description"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Исправить</button>
-                <button class="btn btn-primary" (click)="deleteIdea($event, ideaItem)"><span class="glyphicon glyphicon-trash"></span>удалить</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div> -->

@@ -3,7 +3,6 @@ import { IdeaService } from '../../services/idea.service';
 import { AuthService } from '../../services/auth.service';
 import { LikeService } from '../../services/like.service';
 import { IdeaItem } from '../../models/idea-item.model';
-// import { Like } from '../../models/like.model';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
@@ -25,11 +24,9 @@ export class IdeaItemComponent implements OnInit {
   ownEmail: string;
   ideaToEdit: IdeaItem;
   editState: boolean = false;
-  improvedIdea: IdeaItem;
 
   likes: number;
   dislikes: number;
-  likers: string[];
 
   user: Observable<firebase.User>;
   onlineUser: string;
@@ -56,9 +53,8 @@ export class IdeaItemComponent implements OnInit {
     this.timeStamp = ideaItem.timeStamp;
     this.userEmail = ideaItem.email;
     this.userName = ideaItem.userName;
-    this.likes = ideaItem.likes;
-    this.dislikes = ideaItem.dislikes;
-    this.likers = ideaItem.likers;
+    this.likes = ideaItem.likers.length - 1;
+    this.dislikes = ideaItem.dislikers.length - 1;
 
     this.user = this.authService.authUser();
     this.user.subscribe(user => {
