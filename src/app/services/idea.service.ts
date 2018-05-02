@@ -11,7 +11,6 @@ import { IdeaItem } from '../models/idea-item.model';
 export class IdeaService {
   user: firebase.User;
   ideas: FirebaseListObservable<IdeaItem[]>;
-  // userName: Observable<string>;
   userName: any;
   
   constructor(
